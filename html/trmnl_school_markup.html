@@ -1,0 +1,146 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+
+<style>
+    div.highcharts-container {
+        height: 20px
+    }
+    .highcharts-title {
+        display: none
+    }
+    svg.highcharts-root {
+        height: 100%
+    }
+    svg.highcharts-root rect.highcharts-background {
+        height: 20px
+    }
+</style>
+
+<div class="layout layout--col layout--stretch">
+    <div class="h--7">
+      <figure style="width: 100%;" class="highcharts-figure">
+        <div id="school-container"></div>
+      </figure>
+    </div>
+    <div class="h--7">
+      <figure style="width: 100%;" class="highcharts-figure">
+        <div id="year-container"></div>
+      </figure>
+    </div>
+    <div class="h--4"></div>
+    <div class="h--50"><div class="columns">
+      <div class="column">
+        <span class="description clamp--6">
+          {{ notes.left }}
+        </span>
+      </div>
+      <div class="column">
+        <span class="description clamp--6">
+          {{ notes.right }}
+        </span>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function createBar(completionPercentage, label) {
+        return {
+            chart: {
+                type: "bar",
+                height: "20%"
+            },
+            plotOptions: {
+                bar: {
+                    stacking: 'percent',
+                    animation: false,
+                    borderRadius: '10%',
+                    dataLabels: {
+                        enabled: true
+                    },
+                    groupPadding: 0.1
+                }
+            },
+            title: {
+                enabled: false,
+            },
+            legend: {
+                enabled: false,
+            },
+            tooltip: {
+                enabled: false,
+            },
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                tickWidth: 0,
+                lineWidth: 0,
+                gridLineWidth: 0,
+                title: {
+                    enabled: false,
+                },
+                labels: {
+                    enabled: false,
+                },
+            },
+
+            xAxis: {
+                min: 0,
+                max: 100,
+                tickWidth: 0,
+                lineWidth: 0,
+                title: {
+                    enabled: false,
+                },
+                labels: {
+                    enabled: false,
+                },
+            },
+            series: [{
+                pointWidth: 60,
+                data: [
+                    { 
+                        y: 100 - completionPercentage, 
+                        dataLabels: {
+                            enabled: false,
+                        },
+                        color: {
+                            pattern: {
+                                image: "https://usetrmnl.com/images/grayscale/gray-7.png",
+                                width: 12,
+                                height: 12
+                            }
+                        },
+                    } ,
+                ],
+            },{
+                pointWidth: 60,
+                data: [
+                    { 
+                        y: completionPercentage,
+                        dataLabels: {
+                            enabled: true,
+                            format: label,
+                            color: 'contrast',
+                            align: 'left',
+                        },
+                        color: {
+                            pattern: {
+                                image: "https://usetrmnl.com/images/grayscale/gray-2.png",
+                                width: 12,
+                                height: 12
+                            }
+                        },
+                    },
+                ],
+            }],
+            credits: {
+                enabled: false
+            }
+        }
+    }
+
+    Highcharts.chart('year-container', createBar({{ year.completionPercentage }}, 'Year | {{ year.label }}'));
+    Highcharts.chart('school-container', createBar({{ school.completionPercentage }}, 'School | {{ school.label }}'));
+</script>

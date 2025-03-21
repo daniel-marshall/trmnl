@@ -29,7 +29,7 @@ export class TrmnlStack extends cdk.Stack {
       runtime: lambda.Runtime.FROM_IMAGE,
       handler: lambda.Handler.FROM_IMAGE,
       code: lambda.Code.fromEcrImage(props.ecrRepo, { tagOrDigest: `sha256:${ecrDigest.valueAsString}` }),
-      timeout: cdk.Duration.seconds(30),
+      timeout: cdk.Duration.minutes(1),
       environment: {
         LAMBDA_HANDLER_KEY: "ACTIVITY",
         LAMBDA_NAME: keeeyLambda.functionName
@@ -44,7 +44,7 @@ export class TrmnlStack extends cdk.Stack {
       runtime: lambda.Runtime.FROM_IMAGE,
       handler: lambda.Handler.FROM_IMAGE,
       code: lambda.Code.fromEcrImage(props.ecrRepo, { tagOrDigest: `sha256:${ecrDigest.valueAsString}` }),
-      timeout: cdk.Duration.seconds(30),
+      timeout: cdk.Duration.minutes(1),
       environment: {
         LAMBDA_HANDLER_KEY: "LISTS",
         LAMBDA_NAME: keeeyLambda.functionName

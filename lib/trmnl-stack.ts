@@ -45,5 +45,13 @@ export class TrmnlStack extends cdk.Stack {
     const listsLambdaUrl = listsLambdaFunc.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE
     });
+
+    const keeeyLambda = lambda.Function.fromFunctionArn(
+      this,
+      'KeeeyFunction',
+      'arn:aws:lambda:us-east-1:794038246157:function:Alpha-Keeey-Function76856677-Z18n4i9g9yb8'
+    );
+    keeeyLambda.grantInvoke(activityLambdaFunc);
+    keeeyLambda.grantInvoke(listsLambdaFunc);
   }
 }

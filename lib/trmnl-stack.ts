@@ -2,8 +2,8 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
-import * as events from 'aws-cdk-lib/aws_events';
-import * as targets from 'aws-cdk-lib/aws_events_targets';
+import * as events from 'aws-cdk-lib/aws-events';
+import * as targets from 'aws-cdk-lib/aws-events-targets';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import { Repository } from 'aws-cdk-lib/aws-ecr';
 

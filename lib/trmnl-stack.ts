@@ -68,10 +68,24 @@ export class TrmnlStack extends cdk.Stack {
 
     rule.addTarget(new targets.LambdaFunction(activityLambdaFunc, {
       retryAttempts: 2,
+      event: events.RuleTargetInput.fromObject({
+        requestContext: {
+          http: {
+            method: "GET"
+          }
+        }
+      }),
     }));
 
     rule.addTarget(new targets.LambdaFunction(listsLambdaFunc, {
       retryAttempts: 2,
+      event: events.RuleTargetInput.fromObject({
+        requestContext: {
+          http: {
+            method: "GET"
+          }
+        }
+      }),
     }));
   }
 }

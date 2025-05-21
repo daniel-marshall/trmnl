@@ -35,7 +35,7 @@ export class TrmnlStack extends cdk.Stack {
       environment: {
         LAMBDA_HANDLER_KEY: "ACTIVITY",
         LAMBDA_NAME: keeeyLambda.functionName,
-        TRMNL_WEBHOOK_URL: "https://usetrmnl.com/api/custom_plugins/3acd1c9d-4b9b-47f8-ab95-6222ba8f99b9"
+        TRMNL_WEBHOOK_ID: "3acd1c9d-4b9b-47f8-ab95-6222ba8f99b9"
       }
     });
 
@@ -51,7 +51,7 @@ export class TrmnlStack extends cdk.Stack {
       environment: {
         LAMBDA_HANDLER_KEY: "LISTS",
         LAMBDA_NAME: keeeyLambda.functionName,
-        TRMNL_WEBHOOK_URL: "https://usetrmnl.com/api/custom_plugins/e8d8f5f6-362e-4ae7-bab7-e417074ef690"
+        TRMNL_WEBHOOK_ID: "e8d8f5f6-362e-4ae7-bab7-e417074ef690"
       }
     });
 
